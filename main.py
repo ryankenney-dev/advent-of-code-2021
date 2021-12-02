@@ -1,6 +1,7 @@
 import day1.day1_part1 as day1_part1
 import day1.day1_part2 as day1_part2
 import day2.day2_part1 as day2_part1
+import day2.day2_part2 as day2_part2
 import argparse
 from typing import Any, Callable, Dict
 
@@ -36,6 +37,13 @@ def day2_part1_main() -> None:
     position: List[day2_part1.SubCommand] = day2_part1.compute_position(commands)
     print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
 
+def day2_part2_main() -> None:
+    with open("day2/input", 'r') as f:
+        message = f.read()
+    commands: day2_part2.SubCommand = day2_part2.parse_input(message)
+    position: List[day2_part2.SubCommand] = day2_part2.compute_position(commands)
+    print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -43,6 +51,7 @@ def main():
         "day1_part1": day1_part1_main,
         "day1_part2": day1_part2_main,
         "day2_part1": day2_part1_main,
+        "day2_part2": day2_part2_main,
     }
     
     day_funcs[config.puzzle]()
