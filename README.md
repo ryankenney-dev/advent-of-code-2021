@@ -3,7 +3,7 @@ Advent of Code 2021
 
 Create the local `.venv`:
 
-    python3 -m venv .venv
+    python3.8 -m venv .venv
 
 Download dependencies:
 
