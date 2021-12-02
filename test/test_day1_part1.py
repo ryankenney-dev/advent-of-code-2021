@@ -5,8 +5,9 @@ class TestDay1Part1(unittest.TestCase):
 
     def test_main(self):
 
-        test_cases = [{
-            'input': '''199
+        # Setup
+        # ----
+        message: str ='''199
 200
 208
 210
@@ -15,10 +16,13 @@ class TestDay1Part1(unittest.TestCase):
 240
 269
 260
-263''',
-            'expected_count': 7,
-        }]
+263'''
+        expected_count: int = 7
         
-        for test_case in test_cases:
-            depths = day1_part1.parse_input(test_case['input'])
-            self.assertEquals(day1_part1.count_depth_increments(depths), test_case['expected_count'])
+        # Execute
+        # ----
+        depths: day1_part1.DepthsList = day1_part1.parse_input(message)
+
+        # Verify
+        # ----
+        self.assertEqual(day1_part1.count_depth_increments(depths), expected_count)
