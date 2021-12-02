@@ -1,4 +1,5 @@
 import day1.day1_part1 as day1_part1
+import day1.day1_part2 as day1_part2
 import argparse
 from typing import Any, Callable, Dict
 
@@ -21,11 +22,18 @@ def day1_part1_main() -> None:
     depths = day1_part1.parse_input(message)
     print("Depth Increments: %s" % day1_part1.count_depth_increments(depths))
 
+def day1_part2_main() -> None:
+    with open("day1/input", 'r') as f:
+        message = f.read()
+    depths = day1_part2.parse_input(message)
+    print("Depth Increments: %s" % day1_part2.count_depth_increments(depths))
+
 def main():
     config: Any = parse_args_or_exit()
     
     day_funcs: Dict[str, Callable[[], None]] = {
-        "day1_part1": day1_part1_main 
+        "day1_part1": day1_part1_main,
+        "day1_part2": day1_part2_main,
     }
     
     day_funcs[config.puzzle]()
