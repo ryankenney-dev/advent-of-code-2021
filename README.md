@@ -19,4 +19,4 @@ Run all unit tests:
 
 Run a specific puzzle:
 
-    pipenv run python main.py -p day1_part1
+    pipenv run python main.py -p d1p1

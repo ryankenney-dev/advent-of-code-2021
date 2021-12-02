@@ -1,7 +1,7 @@
-import day1.day1_part1 as day1_part1
-import day1.day1_part2 as day1_part2
-import day2.day2_part1 as day2_part1
-import day2.day2_part2 as day2_part2
+import day1.day1_part1 as d1p1
+import day1.day1_part2 as d1p2
+import day2.day2_part1 as d2p1
+import day2.day2_part2 as d2p2
 import argparse
 from typing import Any, Callable, Dict
 
@@ -15,43 +15,43 @@ def parse_args_or_exit() -> Any:
     parser = WrappedArgumentParser(description='Runs advent of code solutions.')
 
     parser.add_argument("-p", "--puzzle", type=str, required=True,
-                        help='The puzzle to run. For example "day1_part1".')
+                        help='The puzzle to run. For example "d1p1".')
     return parser.parse_args()
 
-def day1_part1_main() -> None:
+def d1p1_main() -> None:
     with open("day1/input", 'r') as f:
         message = f.read()
-    depths = day1_part1.parse_input(message)
-    print("Depth Increments: %s" % day1_part1.count_depth_increments(depths))
+    depths = d1p1.parse_input(message)
+    print("Depth Increments: %s" % d1p1.count_depth_increments(depths))
 
-def day1_part2_main() -> None:
+def d1p2_main() -> None:
     with open("day1/input", 'r') as f:
         message = f.read()
-    depths = day1_part2.parse_input(message)
-    print("Depth Increments: %s" % day1_part2.count_depth_increments(depths))
+    depths = d1p2.parse_input(message)
+    print("Depth Increments: %s" % d1p2.count_depth_increments(depths))
 
-def day2_part1_main() -> None:
+def d2p1_main() -> None:
     with open("day2/input", 'r') as f:
         message = f.read()
-    commands: day2_part1.SubCommand = day2_part1.parse_input(message)
-    position: List[day2_part1.SubCommand] = day2_part1.compute_position(commands)
+    commands: d2p1.SubCommand = d2p1.parse_input(message)
+    position: List[d2p1.SubCommand] = d2p1.compute_position(commands)
     print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
 
-def day2_part2_main() -> None:
+def d2p2_main() -> None:
     with open("day2/input", 'r') as f:
         message = f.read()
-    commands: day2_part2.SubCommand = day2_part2.parse_input(message)
-    position: List[day2_part2.SubCommand] = day2_part2.compute_position(commands)
+    commands: d2p2.SubCommand = d2p2.parse_input(message)
+    position: List[d2p2.SubCommand] = d2p2.compute_position(commands)
     print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
 
 def main():
     config: Any = parse_args_or_exit()
     
     day_funcs: Dict[str, Callable[[], None]] = {
-        "day1_part1": day1_part1_main,
-        "day1_part2": day1_part2_main,
-        "day2_part1": day2_part1_main,
-        "day2_part2": day2_part2_main,
+        "d1p1": d1p1_main,
+        "d1p2": d1p2_main,
+        "d2p1": d2p1_main,
+        "d2p2": d2p2_main,
     }
     
     day_funcs[config.puzzle]()
