@@ -1,5 +1,6 @@
 import day1.day1_part1 as day1_part1
 import argparse
+from typing import Any
 
 # A version of argparse.ArgumentParser, that report errors
 # with a non-zero exit code
@@ -20,6 +21,8 @@ def day1_part1_main():
         message = f.read()
     depths = day1_part1.parse_input(message)
     print("Depth Increments: %s" % day1_part1.count_depth_increments(depths))
+
+config: Any = {}
 
 parse_args_or_exit()
 
