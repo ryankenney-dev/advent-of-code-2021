@@ -2,9 +2,7 @@ from typing import List, Optional
 import copy
 import re
 
-MARKER: int = -1
-
-Board = List[List[int]]
+Board = List[List[Optional[int]]]
 
 def parse_drawn_balls(message: str) -> List[int]:
     lines: List[str] = message.splitlines()
@@ -21,19 +19,12 @@ def parse_boards(message: str) -> List[Board]:
             board: Board = []
             boards.append(board)
             continue
-        row = list(map(lambda s: int(s), re.split('\s+', line.strip())))
+        row: List[Optional[int]] = list(map(lambda s: int(s), re.split('\s+', line.strip())))
         board.append(row)
     return boards
 
 def find_winning_board_score(balls: List[int], boards: List[Board]) -> int:
     boards = copy.deepcopy(boards)
-
-    # Assert our special number is special
-    for board in boards:
-        for row in board:
-            for value in row:
-                if value == MARKER:
-                    raise Exception('Marker value collision')
 
     winning_board: Optional[Board] = None
     for ball in balls:
@@ -44,7 +35,7 @@ def find_winning_board_score(balls: List[int], boards: List[Board]) -> int:
                 for x in range(0, len(row)):
                     if row[x] != ball:
                         continue
-                    row[x] = MARKER
+                    row[x] = None
 
         # Look for winning board
         for board in boards:
@@ -52,17 +43,24 @@ def find_winning_board_score(balls: List[int], boards: List[Board]) -> int:
                 winning_board = board
                 break
 
+        if winning_board is not None:
+            break
+
+    print(ball)
+    print(winning_board)
+
     if winning_board is None:
         raise Exception('No winner found')
 
-    # Comput score
+    # Compute score
     return ball * sum_of_unmarked_squares(winning_board)
 
 def sum_of_unmarked_squares(board: Board) -> int:
     sum: int = 0
+    row: List[Optional[int]]; value: Optional[int]
     for row in board:
         for value in row:
-            if value == MARKER:
+            if value is None:
                 continue
             sum += value
     return sum
@@ -72,7 +70,7 @@ def is_winner_horizontal(board: Board) -> bool:
     for row in range(0, len(board)):
         all_values_marked: bool = True
         for col in range(0, len(board[0])):
-            if board[row][col] != MARKER:
+            if board[row][col] is not None:
                 all_values_marked = False
                 break
         if all_values_marked:
@@ -84,7 +82,7 @@ def is_winner_vertical(board: Board) -> bool:
     for col in range(0, len(board[0])):
         all_values_marked: bool = True
         for row in range(0, len(board)):
-            if board[row][col] != MARKER:
+            if board[row][col] is not None:
                 all_values_marked = False
                 break
         if all_values_marked:

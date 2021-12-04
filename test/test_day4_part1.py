@@ -82,23 +82,23 @@ class TestDay3Part2(unittest.TestCase):
         # ----
         test_cases: List[TestCase] = [{
             'board': [
-                [  -1,  -1,  -1,  -1,   0],
-                [  -1,  -1,  -1,  -1,   0],
-                [  -1,  -1,  -1,  -1,   0],
-                [  -1,  -1,  -1,  -1,   0],
-                [  -1,  -1,  -1,  -1,   0]],
+                [None,None,None,None,   0],
+                [None,None,None,None,   0],
+                [None,None,None,None,   0],
+                [None,None,None,None,   0],
+                [None,None,None,None,   0]],
             'expected_winner': False,
         },{
             'board': [
-                [  -1,  -1,  -1,  -1,   0],
-                [  -1,  -1,  -1,   0,  -1],
-                [  -1,  -1,   0,  -1,  -1],
-                [  -1,   0,  -1,  -1,  -1],
-                [   0,  -1,  -1,  -1,  -1]],
+                [None,None,None,None,   0],
+                [None,None,None,   0,None],
+                [None,None,   0,None,None],
+                [None,   0,None,None,None],
+                [   0,None,None,None,None]],
             'expected_winner': False,
         },{
             'board': [
-                [  -1,  -1,  -1,  -1,  -1],
+                [None,None,None,None,None],
                 [   0,   0,   0,   0,   0],
                 [   0,   0,   0,   0,   0],
                 [   0,   0,   0,   0,   0],
@@ -110,7 +110,7 @@ class TestDay3Part2(unittest.TestCase):
                 [   0,   0,   0,   0,   0],
                 [   0,   0,   0,   0,   0],
                 [   0,   0,   0,   0,   0],
-                [  -1,  -1,  -1,  -1,  -1]],
+                [None,None,None,None,None]],
             'expected_winner': True,
         }]
 
@@ -131,35 +131,35 @@ class TestDay3Part2(unittest.TestCase):
         # ----
         test_cases: List[TestCase] = [{
             'board': [
-                [  -1,  -1,  -1,  -1,  -1],
-                [  -1,  -1,  -1,  -1,  -1],
-                [  -1,  -1,  -1,  -1,  -1],
-                [  -1,  -1,  -1,  -1,  -1],
+                [None,None,None,None,None],
+                [None,None,None,None,None],
+                [None,None,None,None,None],
+                [None,None,None,None,None],
                 [   0,   0,   0,   0,   0]],
             'expected_winner': False,
         },{
             'board': [
-                [  -1,  -1,  -1,  -1,   0],
-                [  -1,  -1,  -1,   0,  -1],
-                [  -1,  -1,   0,  -1,  -1],
-                [  -1,   0,  -1,  -1,  -1],
-                [   0,  -1,  -1,  -1,  -1]],
+                [None,None,None,None,   0],
+                [None,None,None,   0,None],
+                [None,None,   0,None,None],
+                [None,   0,None,None,None],
+                [   0,None,None,None,None]],
             'expected_winner': False,
         },{
             'board': [
-                [  -1,   0,   0,   0,   0],
-                [  -1,   0,   0,   0,   0],
-                [  -1,   0,   0,   0,   0],
-                [  -1,   0,   0,   0,   0],
-                [  -1,   0,   0,   0,   0]],
+                [None,   0,   0,   0,   0],
+                [None,   0,   0,   0,   0],
+                [None,   0,   0,   0,   0],
+                [None,   0,   0,   0,   0],
+                [None,   0,   0,   0,   0]],
             'expected_winner': True,
         },{
             'board': [
-                [   0,   0,   0,   0,  -1],
-                [   0,   0,   0,   0,  -1],
-                [   0,   0,   0,   0,  -1],
-                [   0,   0,   0,   0,  -1],
-                [   0,   0,   0,   0,  -1]],
+                [   0,   0,   0,   0,None],
+                [   0,   0,   0,   0,None],
+                [   0,   0,   0,   0,None],
+                [   0,   0,   0,   0,None],
+                [   0,   0,   0,   0,None]],
             'expected_winner': True,
         }]
 
@@ -175,11 +175,11 @@ class TestDay3Part2(unittest.TestCase):
         # Setup
         # ----
         board: puzzle.Board = [
-            [-1, -1, -1, -1, -1],
-            [10, 16, 15, -1, 19],
-            [18,  8, -1, 26, 20],
-            [22, -1, 13,  6, -1],
-            [-1, -1, 12,  3, -1]
+            [None,None,None,None,None],
+            [  10,  16,  15,None,  19],
+            [  18,   8,None,  26,  20],
+            [  22,None,  13,   6,None],
+            [None,None,  12,   3,None]
         ]
 
         # Execute
