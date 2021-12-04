@@ -4,6 +4,7 @@ import day2.day2_part1 as d2p1
 import day2.day2_part2 as d2p2
 import day3.day3_part1 as d3p1
 import day3.day3_part2 as d3p2
+import day4.day4_part1 as d4p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -63,6 +64,14 @@ def d3p2_main() -> None:
     print("oxygen_generator_rating: %s, co2_scrubber_rating: %s, product: %s" % \
         (oxygen_generator_rating, co2_scrubber_rating, oxygen_generator_rating * co2_scrubber_rating))
 
+def d4p1_main() -> None:
+    with open("day4/input", 'r') as f:
+        message = f.read()
+    balls: List[int] = d4p1.parse_drawn_balls(message)
+    boards: List[d4p1.Board] = d4p1.parse_boards(message)
+    score: int = d4p1.find_winning_board_score(balls, boards)
+    print("Score: %s" % score)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -73,6 +82,7 @@ def main():
         "d2p2": d2p2_main,
         "d3p1": d3p1_main,
         "d3p2": d3p2_main,
+        "d4p1": d4p1_main,
     }
     
     day_funcs[config.puzzle]()
