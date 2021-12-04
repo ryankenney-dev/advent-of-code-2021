@@ -1,22 +1,7 @@
 Advent of Code 2021
 ================
 
-Create the local `.venv`:
+To build, test, and run all solutions, just run:
 
-    python3.8 -m venv .venv
+    bash build_test_run.sh
 
-Download dependencies:
-
-    pipenv run pip install -r requirements
-
-Run type checking:
-
-    pipenv run mypy ./
-
-Run all unit tests:
-
-    pipenv run python -m unittest discover -s test
-
-Run a specific puzzle:
-
-    pipenv run python main.py -p d1p1
