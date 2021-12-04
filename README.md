@@ -7,7 +7,7 @@ Create the local `.venv`:
 
 Download dependencies:
 
-    pipenv run pip install -r requirements.txt
+    pipenv run pip install -r requirements
 
 Run type checking:
 
