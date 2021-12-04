@@ -3,6 +3,7 @@ import day1.day1_part2 as d1p2
 import day2.day2_part1 as d2p1
 import day2.day2_part2 as d2p2
 import day3.day3_part1 as d3p1
+import day3.day3_part2 as d3p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -53,6 +54,15 @@ def d3p1_main() -> None:
     epsilon_rate: int = d3p1.compute_epsilon_rate(numbers)
     print("Gamma: %s, Epsilon: %s, Product: %s" % (gamma_rate, epsilon_rate, gamma_rate * epsilon_rate))
 
+def d3p2_main() -> None:
+    with open("day3/input", 'r') as f:
+        message = f.read()
+    numbers: List[str] = d3p2.parse_input(message)
+    oxygen_generator_rating: int = d3p2.compute_oxygen_generator_rating(numbers)
+    co2_scrubber_rating: int = d3p2.compute_co2_scrubber_rating(numbers)
+    print("oxygen_generator_rating: %s, co2_scrubber_rating: %s, product: %s" % \
+        (oxygen_generator_rating, co2_scrubber_rating, oxygen_generator_rating * co2_scrubber_rating))
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -62,6 +72,7 @@ def main():
         "d2p1": d2p1_main,
         "d2p2": d2p2_main,
         "d3p1": d3p1_main,
+        "d3p2": d3p2_main,
     }
     
     day_funcs[config.puzzle]()
