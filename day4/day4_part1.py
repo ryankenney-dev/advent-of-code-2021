@@ -46,9 +46,6 @@ def find_winning_board_score(balls: List[int], boards: List[Board]) -> int:
         if winning_board is not None:
             break
 
-    print(ball)
-    print(winning_board)
-
     if winning_board is None:
         raise Exception('No winner found')
 
