@@ -2,6 +2,7 @@ import day1.day1_part1 as d1p1
 import day1.day1_part2 as d1p2
 import day2.day2_part1 as d2p1
 import day2.day2_part2 as d2p2
+import day3.day3_part1 as d3p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -44,6 +45,14 @@ def d2p2_main() -> None:
     position: d2p2.Position = d2p2.compute_position(commands)
     print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
 
+def d3p1_main() -> None:
+    with open("day3/input", 'r') as f:
+        message = f.read()
+    numbers: List[str] = d3p1.parse_input(message)
+    gamma_rate: int = d3p1.compute_gamma_rate(numbers)
+    epsilon_rate: int = d3p1.compute_epsilon_rate(numbers)
+    print("Gamma: %s, Epsilon: %s, Product: %s" % (gamma_rate, epsilon_rate, gamma_rate * epsilon_rate))
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -52,6 +61,7 @@ def main():
         "d1p2": d1p2_main,
         "d2p1": d2p1_main,
         "d2p2": d2p2_main,
+        "d3p1": d3p1_main,
     }
     
     day_funcs[config.puzzle]()
