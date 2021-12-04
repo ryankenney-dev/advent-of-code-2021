@@ -3,7 +3,7 @@ import day1.day1_part2 as d1p2
 import day2.day2_part1 as d2p1
 import day2.day2_part2 as d2p2
 import argparse
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, List
 
 # A version of argparse.ArgumentParser, that report errors
 # with a non-zero exit code
@@ -33,15 +33,15 @@ def d1p2_main() -> None:
 def d2p1_main() -> None:
     with open("day2/input", 'r') as f:
         message = f.read()
-    commands: d2p1.SubCommand = d2p1.parse_input(message)
-    position: List[d2p1.SubCommand] = d2p1.compute_position(commands)
+    commands: List[d2p1.SubCommand] = d2p1.parse_input(message)
+    position: d2p1.Position = d2p1.compute_position(commands)
     print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
 
 def d2p2_main() -> None:
     with open("day2/input", 'r') as f:
         message = f.read()
-    commands: d2p2.SubCommand = d2p2.parse_input(message)
-    position: List[d2p2.SubCommand] = d2p2.compute_position(commands)
+    commands: List[d2p2.SubCommand] = d2p2.parse_input(message)
+    position: d2p2.Position = d2p2.compute_position(commands)
     print("Position: %s, Product: %s" % (position, position['horizontal'] * position['depth']))
 
 def main():
