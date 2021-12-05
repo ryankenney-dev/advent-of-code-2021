@@ -7,6 +7,7 @@ import day3.day3_part2 as d3p2
 import day4.day4_part1 as d4p1
 import day4.day4_part2 as d4p2
 import day5.day5_part1 as d5p1
+import day5.day5_part2 as d5p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -91,6 +92,14 @@ def d5p1_main() -> None:
     danger_points: int = d5p1.count_danger_points(diagram)
     print("Danger Points: %s" % danger_points)
 
+def d5p2_main() -> None:
+    with open("day5/input", 'r') as f:
+        message = f.read()
+    lines: List[d5p2.Line] = d5p2.parse_lines(message)
+    diagram: d5p2.Diagram = d5p2.render_diagram(lines)
+    danger_points: int = d5p2.count_danger_points(diagram)
+    print("Danger Points: %s" % danger_points)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -104,6 +113,7 @@ def main():
         "d4p1": d4p1_main,
         "d4p2": d4p2_main,
         "d5p1": d5p1_main,
+        "d5p2": d5p2_main,
     }
     
     if config.puzzle == 'all':
