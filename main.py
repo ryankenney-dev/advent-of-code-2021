@@ -6,6 +6,7 @@ import day3.day3_part1 as d3p1
 import day3.day3_part2 as d3p2
 import day4.day4_part1 as d4p1
 import day4.day4_part2 as d4p2
+import day5.day5_part1 as d5p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -81,6 +82,15 @@ def d4p2_main() -> None:
     score: int = d4p2.find_last_winning_board_score(balls, boards)
     print("Score: %s" % score)
 
+def d5p1_main() -> None:
+    with open("day5/input", 'r') as f:
+        message = f.read()
+    lines: List[d5p1.Line] = d5p1.parse_lines(message)
+    lines = d5p1.filter_out_diagonal_lines(lines)
+    diagram: d5p1.Diagram = d5p1.render_diagram(lines)
+    danger_points: int = d5p1.count_danger_points(diagram)
+    print("Danger Points: %s" % danger_points)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -93,6 +103,7 @@ def main():
         "d3p2": d3p2_main,
         "d4p1": d4p1_main,
         "d4p2": d4p2_main,
+        "d5p1": d5p1_main,
     }
     
     if config.puzzle == 'all':
