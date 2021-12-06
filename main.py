@@ -8,6 +8,7 @@ import day4.day4_part1 as d4p1
 import day4.day4_part2 as d4p2
 import day5.day5_part1 as d5p1
 import day5.day5_part2 as d5p2
+import day6.day6_part1 as d6p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -100,6 +101,13 @@ def d5p2_main() -> None:
     danger_points: int = d5p2.count_danger_points(diagram)
     print("Danger Points: %s" % danger_points)
 
+def d6p1_main() -> None:
+    with open("day6/input", 'r') as f:
+        message = f.read()
+    time_counts: d6p1.CountPerTime = d6p1.parse_fish_times(message)
+    fish_count = d6p1.elapse_days_and_get_total_count(time_counts, 80)
+    print("Fish Count: %s" % fish_count)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -114,6 +122,7 @@ def main():
         "d4p2": d4p2_main,
         "d5p1": d5p1_main,
         "d5p2": d5p2_main,
+        "d6p1": d6p1_main,
     }
     
     if config.puzzle == 'all':
