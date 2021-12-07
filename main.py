@@ -10,6 +10,8 @@ import day5.day5_part1 as d5p1
 import day5.day5_part2 as d5p2
 import day6.day6_part1 as d6p1
 import day6.day6_part2 as d6p2
+import day7.day7_part1 as d7p1
+import day7.day7_part2 as d7p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -116,6 +118,20 @@ def d6p2_main() -> None:
     fish_count = d6p2.elapse_days_and_get_total_count(time_counts, 256)
     print("Fish Count: %s" % fish_count)
 
+def d7p1_main() -> None:
+    with open("day7/input", 'r') as f:
+        message = f.read()
+    positions: d7p1.Positions = d7p1.parse_positions(message)
+    cheapest_cost: int = d7p1.find_cost_cheapest_position(positions)
+    print("Cheapest Cost: %s" % cheapest_cost)
+
+def d7p2_main() -> None:
+    with open("day7/input", 'r') as f:
+        message = f.read()
+    positions: d7p2.Positions = d7p2.parse_positions(message)
+    cheapest_cost: int = d7p2.find_cost_cheapest_position(positions)
+    print("Cheapest Cost: %s" % cheapest_cost)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -132,6 +148,8 @@ def main():
         "d5p2": d5p2_main,
         "d6p1": d6p1_main,
         "d6p2": d6p2_main,
+        "d7p1": d7p1_main,
+        "d7p2": d7p2_main,
     }
     
     if config.puzzle == 'all':
