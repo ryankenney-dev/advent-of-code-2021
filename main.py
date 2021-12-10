@@ -14,6 +14,7 @@ import day7.day7_part1 as d7p1
 import day7.day7_part2 as d7p2
 import day8.day8_part1 as d8p1
 import day8.day8_part2 as d8p2
+import day9.day9_part1 as d9p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -148,6 +149,13 @@ def d8p2_main() -> None:
     sum: int = d8p2.compute_sum_of_output_values(entries)
     print("Sum of Output Values: %s" % sum)
 
+def d9p1_main() -> None:
+    with open("day9/input", 'r') as f:
+        message = f.read()
+    board: d9p1.Board = d9p1.parse_board(message)
+    sum: int = d9p1.get_sum_of_low_point_risk(board)
+    print("Sum of Low Point Risk: %s" % sum)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -168,6 +176,7 @@ def main():
         "d7p2": d7p2_main,
         "d8p1": d8p1_main,
         "d8p2": d8p2_main,
+        "d9p1": d9p1_main,
     }
     
     if config.puzzle == 'all':
