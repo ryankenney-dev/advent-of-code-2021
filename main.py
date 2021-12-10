@@ -12,6 +12,8 @@ import day6.day6_part1 as d6p1
 import day6.day6_part2 as d6p2
 import day7.day7_part1 as d7p1
 import day7.day7_part2 as d7p2
+import day8.day8_part1 as d8p1
+import day8.day8_part2 as d8p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -132,6 +134,20 @@ def d7p2_main() -> None:
     cheapest_cost: int = d7p2.find_cost_cheapest_position(positions)
     print("Cheapest Cost: %s" % cheapest_cost)
 
+def d8p1_main() -> None:
+    with open("day8/input", 'r') as f:
+        message = f.read()
+    entries: List[d8p1.Entry] = d8p1.parse_entries(message)
+    count: int = d8p1.count_1_4_7_8_output_digits(entries)
+    print("Count of 1,3,7,8 Output Digits: %s" % count)
+
+def d8p2_main() -> None:
+    with open("day8/input", 'r') as f:
+        message = f.read()
+    entries: List[d8p2.Entry] = d8p2.parse_entries(message)
+    sum: int = d8p2.compute_sum_of_output_values(entries)
+    print("Sum of Output Values: %s" % sum)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -150,6 +166,8 @@ def main():
         "d6p2": d6p2_main,
         "d7p1": d7p1_main,
         "d7p2": d7p2_main,
+        "d8p1": d8p1_main,
+        "d8p2": d8p2_main,
     }
     
     if config.puzzle == 'all':
