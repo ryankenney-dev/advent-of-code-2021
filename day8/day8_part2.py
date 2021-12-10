@@ -14,7 +14,7 @@ def parse_entries(message: str) -> List[Entry]:
             'output_digits': [],
         }    
         parts = line.split(' | ')
-        # NOTE: Sorts the chars in each entry
+        # TODO: These should be sets, not sorted strings, but how much cleanup do I bother with?
         entry['signal_patterns'] = list(map(lambda item: sort_string(item), parts[0].split(' ')))
         entry['output_digits'] = list(map(lambda item: sort_string(item), parts[1].split(' ')))
         entries.append(entry)
@@ -23,38 +23,6 @@ def parse_entries(message: str) -> List[Entry]:
 # TODO: Remove (not needed)
 def sort_string(s: str) -> str:
     return ''.join(sorted(list(s)))
-
-# Breadown of Segement Relations:
-#
-# (0,6,9): 6 segments
-# * (0,6): 5 in common
-# * (0,9): 5 in common
-# * (6,9): 5 in common
-# (1): 2 segements
-# (2,3,5): 5 segments
-# * (2,3): 4 in common
-# * (2,5): 3 in common
-# * (3,5): 4 in common
-# (4): 4 segements
-# (7): 3 segments
-# (8): 7 segments
-#
-# One path to a solution (not necessarily the best):
-#
-# 1.  We know signals "1", "4", "7", "8"
-# 2.  We know segment "aaa" is "7" - "1"
-# 3.  We know signal "6" is any 6-segement signal that does not fully contain "1"
-# 3b. We know segment "ccc" is the segment of "1" missing from "6"
-# 3c. We know segment "fff" is the other segment from "1", contained in "6"
-# 4.  We know signal "5" is any 5-segement signal that does not contain "ccc"
-# 5.  We know signal "2" is any 5-segement signal that does not contain "fff"
-# 6.  We know signal "3" is the remaining 5-segment signal
-# 7.  We know segment "bbb" is "5" - "2"
-# 8.  We know segment "eee" is "2" - "5"
-# 9.  We know signal "9" is any 6-segement signal contain "eee"
-# 10. We know signal "0" is the remaining 6-segment signal
-# 11. We know segment "ddd" is "0" - "8"
-# 12. We know segment "ggg" is the remaining segment
 
 T = TypeVar('T')
 
@@ -69,7 +37,7 @@ def compute_signal_digit_mapping(entry: Entry) -> Dict[int, DigitSignal]:
     for signal_pattern_str in entry['signal_patterns']:
         # We use sets so they duplicates are filtered out
         # TODO: list wrapper needed?
-        signal_pattern: DigitSignal = frozenset(list(signal_pattern_str))
+        signal_pattern: DigitSignal = frozenset(signal_pattern_str)
         signals_by_length.setdefault(len(signal_pattern), frozenset())
         s: Optional[FrozenSet[DigitSignal]] = signals_by_length.get(len(signal_pattern))
         assert s is not None
