@@ -1,10 +1,8 @@
 from typing import Dict, List, Callable, NewType, Set, Tuple, TypedDict
 import sys
 
-# Grid = Dict(Tuple(int), int)
 Grid = NewType('Grid', Dict[Tuple[int, int], int])
 
-# TODO: Remove old
 class Board(TypedDict):
     rows: int
     cols: int
