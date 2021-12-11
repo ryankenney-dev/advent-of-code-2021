@@ -16,6 +16,7 @@ import day8.day8_part1 as d8p1
 import day8.day8_part2 as d8p2
 import day9.day9_part1 as d9p1
 import day9.day9_part2 as d9p2
+import day10.day10_part1 as d10p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -164,6 +165,13 @@ def d9p2_main() -> None:
     product: int = d9p2.get_product_of_largest_basin_sizes(board)
     print("Product of Largest Basin Sizes: %s" % product)
 
+def d10p1_main() -> None:
+    with open("day10/input", 'r') as f:
+        message = f.read()
+    lines: List[str] = d10p1.parse_lines(message)
+    score: int = d10p1.get_corrupted_lines_score(lines)
+    print("Syntax Error Score: %s" % score)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -186,6 +194,7 @@ def main():
         "d8p2": d8p2_main,
         "d9p1": d9p1_main,
         "d9p2": d9p2_main,
+        "d10p1": d10p1_main,
     }
     
     if config.puzzle == 'all':
