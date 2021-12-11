@@ -17,6 +17,7 @@ import day8.day8_part2 as d8p2
 import day9.day9_part1 as d9p1
 import day9.day9_part2 as d9p2
 import day10.day10_part1 as d10p1
+import day10.day10_part2 as d10p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -172,6 +173,13 @@ def d10p1_main() -> None:
     score: int = d10p1.get_corrupted_lines_score(lines)
     print("Syntax Error Score: %s" % score)
 
+def d10p2_main() -> None:
+    with open("day10/input", 'r') as f:
+        message = f.read()
+    lines: List[str] = d10p2.parse_lines(message)
+    score: int = d10p2.get_median_completion_score(lines)
+    print("Median Completion Score: %s" % score)
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -195,6 +203,7 @@ def main():
         "d9p1": d9p1_main,
         "d9p2": d9p2_main,
         "d10p1": d10p1_main,
+        "d10p2": d10p2_main,
     }
     
     if config.puzzle == 'all':
