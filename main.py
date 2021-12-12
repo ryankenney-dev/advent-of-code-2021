@@ -19,6 +19,7 @@ import day9.day9_part2 as d9p2
 import day10.day10_part1 as d10p1
 import day10.day10_part2 as d10p2
 import day11.day11_part1 as d11p1
+import day11.day11_part2 as d11p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -189,6 +190,13 @@ def d11p1_main() -> None:
         d11p1.execute_round(board)
     print("Total Flashes: %s" % board['flash_count'])
 
+def d11p2_main() -> None:
+    with open("day11/input", 'r') as f:
+        message = f.read()
+    board: d11p2.Board = d11p2.parse_board(message)
+    d11p2.execute_rounds_until_all_flash(board)
+    print("Rounds: %s" % board['rounds'])
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -214,6 +222,7 @@ def main():
         "d10p1": d10p1_main,
         "d10p2": d10p2_main,
         "d11p1": d11p1_main,
+        "d11p2": d11p2_main,
     }
     
     if config.puzzle == 'all':
