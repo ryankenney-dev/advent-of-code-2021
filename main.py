@@ -21,6 +21,7 @@ import day10.day10_part2 as d10p2
 import day11.day11_part1 as d11p1
 import day11.day11_part2 as d11p2
 import day12.day12_part1 as d12p1
+import day12.day12_part2 as d12p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -205,6 +206,13 @@ def d12p1_main() -> None:
     routes = d12p1.get_all_routes(connections)
     print("Routes: %s" % len(routes))
 
+def d12p2_main() -> None:
+    with open("day12/input", 'r') as f:
+        message = f.read()
+    connections: Dict[str, List[str]] = d12p2.parse_connections(message)
+    routes = d12p2.get_all_routes(connections)
+    print("Routes: %s" % len(routes))
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -232,6 +240,7 @@ def main():
         "d11p1": d11p1_main,
         "d11p2": d11p2_main,
         "d12p1": d12p1_main,
+        "d12p2": d12p2_main,
     }
     
     if config.puzzle == 'all':
