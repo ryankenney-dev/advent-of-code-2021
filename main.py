@@ -18,6 +18,7 @@ import day9.day9_part1 as d9p1
 import day9.day9_part2 as d9p2
 import day10.day10_part1 as d10p1
 import day10.day10_part2 as d10p2
+import day11.day11_part1 as d11p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -180,6 +181,14 @@ def d10p2_main() -> None:
     score: int = d10p2.get_median_completion_score(lines)
     print("Median Completion Score: %s" % score)
 
+def d11p1_main() -> None:
+    with open("day11/input", 'r') as f:
+        message = f.read()
+    board: d11p1.Board = d11p1.parse_board(message)
+    for round in range(0, 100):
+        d11p1.execute_round(board)
+    print("Total Flashes: %s" % board['flash_count'])
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -204,6 +213,7 @@ def main():
         "d9p2": d9p2_main,
         "d10p1": d10p1_main,
         "d10p2": d10p2_main,
+        "d11p1": d11p1_main,
     }
     
     if config.puzzle == 'all':
