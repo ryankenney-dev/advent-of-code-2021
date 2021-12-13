@@ -36,14 +36,11 @@ def compute_signal_digit_mapping(entry: Entry) -> Dict[int, DigitSignal]:
     signals_by_length: Dict[int,FrozenSet[DigitSignal]] = {}
     for signal_pattern_str in entry['signal_patterns']:
         # We use sets so they duplicates are filtered out
-        # TODO: list wrapper needed?
         signal_pattern: DigitSignal = frozenset(signal_pattern_str)
         signals_by_length.setdefault(len(signal_pattern), frozenset())
-        s: Optional[FrozenSet[DigitSignal]] = signals_by_length.get(len(signal_pattern))
-        assert s is not None
-        # TODO: There has to be a better way to getting fronzenlist containing one frozenlist...
-        sp: Set[DigitSignal] = set(); sp.add(signal_pattern); sp_fl: FrozenSet[DigitSignal] = frozenset(sp);
-        signals_by_length[len(signal_pattern)] = s.union(sp_fl)
+        signals_entry: Optional[FrozenSet[DigitSignal]] = signals_by_length.get(len(signal_pattern))
+        assert signals_entry is not None
+        signals_by_length[len(signal_pattern)] = signals_entry.union(frozenset({ signal_pattern }))
 
     known_numbers: Dict[int, DigitSignal] = {}
     known_segments: Dict[str, str] = {}
@@ -115,11 +112,8 @@ def compute_signal_digit_mapping(entry: Entry) -> Dict[int, DigitSignal]:
     assert 9 in known_numbers
 
     # 10. We know signal "0" is the remaining 6-segment signal
-    # TODO: There has to be a better way to wrap sets with sets and use typing...
-    known_6: Set[DigitSignal] = set(); known_6.add(known_numbers[6])
-    known_9: Set[DigitSignal] = set(); known_9.add(known_numbers[9])
-    known_numbers[0] = get_single_item(signals_by_length[6].difference(known_6).difference(known_9))
-    # for digit_signal in signals_by_length[6]:
+    known_numbers[0] = get_single_item( \
+        signals_by_length[6].difference({ known_numbers[6] }).difference({ known_numbers[9] }))
 
     # Not needed
     #
