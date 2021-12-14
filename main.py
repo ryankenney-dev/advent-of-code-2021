@@ -23,6 +23,7 @@ import day11.day11_part2 as d11p2
 import day12.day12_part1 as d12p1
 import day12.day12_part2 as d12p2
 import day13.day13_part1 as d13p1
+import day13.day13_part2 as d13p2
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -221,6 +222,14 @@ def d13p1_main() -> None:
     d13p1.fold_board(board)
     print("Points: %s" % len(board['points']))
 
+def d13p2_main() -> None:
+    with open("day13/input", 'r') as f:
+        message = f.read()
+    board: d13p2.Board = d13p2.parse_instructions(message)
+    while len(board['folds']) > 0:
+        d13p2.fold_board(board)
+    print("Result:\n%s" % d13p2.board_to_string(board))
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -250,6 +259,7 @@ def main():
         "d12p1": d12p1_main,
         "d12p2": d12p2_main,
         "d13p1": d13p1_main,
+        "d13p2": d13p2_main,
     }
     
     if config.puzzle == 'all':
