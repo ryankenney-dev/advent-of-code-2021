@@ -26,6 +26,7 @@ import day13.day13_part1 as d13p1
 import day13.day13_part2 as d13p2
 import day14.day14_part1 as d14p1
 import day14.day14_part2 as d14p2
+import day15.day15_part1 as d15p1
 import argparse
 from typing import Any, Callable, Dict, List
 
@@ -244,6 +245,14 @@ def d14p2_main() -> None:
     state: d14p2.State = d14p2.parse_instructions(message)
     print("Score: %s" % d14p2.compute_n_step_score(state, 40))
 
+def d15p1_main() -> None:
+    with open("day15/input", 'r') as f:
+        message = f.read()
+    state: d15p1.State = d15p1.parse_input(message)
+    route = d15p1.walk_routes(state, 0, [(0,0)])
+    assert route is not None
+    print("Total Risk: %s" % route[0])
+
 def main():
     config: Any = parse_args_or_exit()
     
@@ -276,6 +285,7 @@ def main():
         "d13p2": d13p2_main,
         "d14p1": d14p1_main,
         "d14p2": d14p2_main,
+        "d15p1": d15p1_main,
     }
     
     if config.puzzle == 'all':
