@@ -27,6 +27,7 @@ import day13.day13_part2 as d13p2
 import day14.day14_part1 as d14p1
 import day14.day14_part2 as d14p2
 import day15.day15_part1 as d15p1
+import day24.day24_part1 as d24p1
 import day25.day25_part1 as d25p1
 import argparse
 from typing import Any, Callable, Dict, List
@@ -254,12 +255,19 @@ def d15p1_main() -> None:
     assert route is not None
     print("Total Risk: %s" % route[0])
 
+def d24p1_main() -> None:
+    with open("day24/input", 'r') as f:
+        message = f.read()
+    instructions: List[d24p1.Instruction] = d24p1.parse_input(message)
+    serial: str = d24p1.find_largest_valid_serial(instructions)
+    print("Largest Valid Serial: %s" % serial)
+
 def d25p1_main() -> None:
     with open("day25/input", 'r') as f:
         message = f.read()
     state: d25p1.State = d25p1.parse_input(message)
     cycles: int = d25p1.run_cycles_until_stable(state)
-    print("Cycles until stable: %s" % cycles)
+    print("Cycles Until Stable: %s" % cycles)
 
 def main():
     config: Any = parse_args_or_exit()
@@ -295,6 +303,7 @@ def main():
         "d14p2": d14p2_main,
         # TODO: Re-enable
         # "d15p1": d15p1_main,
+        "d24p1": d24p1_main,
         "d25p1": d25p1_main,
     }
     
